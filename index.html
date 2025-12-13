@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Raiver Gamier | BSIT E-Portfolio</title>
+
+<style>
+:root {
+  --black-bg: #111111; /* Very dark gray for background */
+  --white-text: #BBBBBB; /* Light gray for main text */
+  --white-highlight: #FFFFFF; /* Pure white for highlights and titles */
+  --gray-accent: #444444; /* Dark gray for borders and separators */
+  --light-paper: #222222; /* Slightly lighter background for sections/cards */
+}
+
+/* Classic, elegant sans-serif font */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif; 
+  /* GLOBAL TRANSITION: Smooths out all color, shadow, and position changes */
+  transition: color 0.4s, background 0.4s, border-color 0.4s, box-shadow 0.4s, transform 0.4s;
+}
+
+body {
+  background: var(--black-bg);
+  color: var(--white-text);
+  line-height: 1.8;
+  overflow-x: hidden;
+  /* Optional: Enables smooth scrolling to sections when clicking navigation links */
+  scroll-behavior: smooth; 
+}
+
+/* ================= HEADER ================= */
+header {
+  background: linear-gradient(to bottom, #000000, var(--black-bg));
+  text-align: center;
+  padding: 4rem 1rem 3rem;
+  border-bottom: 2px solid var(--white-highlight);
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+}
+
+header h1 {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  color: var(--white-highlight);
+  letter-spacing: 2px;
+}
+
+.typing {
+  margin-top: .6rem;
+  font-size: 1.15rem;
+  color: var(--white-text);
+  border-right: 2px solid var(--white-highlight);
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  font-family: 'Arial', sans-serif; 
+}
+
+/* ================= NAV (High Contrast) ================= */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #000000;
+  border-bottom: 1px solid var(--gray-accent);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+}
+
+nav a {
+  color: var(--white-text);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 4px 8px;
+  position: relative;
+  letter-spacing: 1px;
+}
+
+nav a:hover {
+  color: var(--white-highlight);
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: var(--white-highlight);
+  transition: width .3s, left .3s;
+}
+
+nav a:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+/* ================= SCROLL REVEAL ANIMATION (CSS) ================= */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+section {
+  max-width: 900px;
+  margin: 3.5rem auto;
+  padding: 2.5rem;
+  background: var(--light-paper);
+  border: 1px solid var(--gray-accent);
+  border-radius: 4px;
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+
+  /* Apply subtle entrance animation with staggered delay */
+  animation: fadeInUp 0.8s ease-out; 
+  animation-fill-mode: backwards; 
+}
+
+/* Staggered Delay for Sections */
+#about { animation-delay: 0.0s; }
+#skills { animation-delay: 0.1s; }
+#education { animation-delay: 0.2s; }
+#certifications { animation-delay: 0.3s; }
+#projects { animation-delay: 0.4s; }
+#contact { animation-delay: 0.5s; }
+
+section h2 {
+  margin-bottom: 1.2rem;
+  color: var(--white-highlight);
+  border-bottom: 1px solid var(--gray-accent);
+  padding-bottom: .6rem;
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+}
+
+/* ================= ABOUT ================= */
+.about {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.about img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  margin: auto;
+  border-radius: 50%;
+  border: 3px solid var(--white-highlight);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+/* ================= SKILLS ================= */
+.skills ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+}
+
+.skills li {
+  padding: 1rem;
+  border: 1px solid var(--gray-accent);
+  border-radius: 4px;
+  text-align: center;
+  background: #333333;
+  color: var(--white-highlight);
+}
+
+.skills li:hover {
+  /* Enhanced Hover */
+  background: var(--gray-accent);
+  color: var(--white-highlight);
+  transform: translateY(-4px) scale(1.02); 
+  box-shadow: 0 8px 15px rgba(255, 255, 255, 0.2);
+}
+
+/* ================= CARDS (Subtle Dividers) ================= */
+.card {
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  border: 1px solid var(--gray-accent);
+  border-radius: 4px;
+  background: #1a1a1a; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.card h3 {
+  color: var(--white-highlight); 
+  margin-bottom: .4rem;
+  font-weight: normal;
+}
+
+/* Styling for Certificate Images */
+.card img {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  margin: 1.5rem auto;
+  border: 2px solid var(--white-highlight);
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Styling for Project Links */
+.card a {
+    color: var(--white-highlight);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--white-text);
+}
+
+.card a:hover {
+    color: var(--white-text);
+    border-bottom-color: var(--white-highlight);
+}
+
+/* ================= BUTTON (Elegant) ================= */
+button {
+  padding: .8rem 1.8rem;
+  background: transparent;
+  color: var(--white-highlight);
+  border: 2px solid var(--white-highlight);
+  border-radius: 2px;
+  cursor: pointer;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+button:hover {
+  /* Enhanced Hover */
+  background: var(--white-highlight);
+  color: var(--black-bg);
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4); 
+}
+
+/* ================= FOOTER ================= */
+footer {
+  text-align: center;
+  padding: 2rem;
+  border-top: 1px dashed var(--gray-accent);
+  margin-top: 4rem;
+  color: #666;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+  .about {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Raiver Gamier</h1>
+  <p class="typing" id="typing"></p>
+</header>
+
+<nav>
+  <a href="#about">About</a>
+  <a href="#skills">Skills</a>
+  <a href="#education">Education</a>
+  <a href="#certifications">Certifications</a>
+  <a href="#projects">Projects</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<section id="about">
+  <h2>About Me</h2>
+  <div class="about">
+    <img src="image/Gamier.png" alt="Raiver Gamier">
+    <p>
+      Hello! I am a Bachelor of Science in Information Technology (BSIT) student
+      passionate about web development, programming, and classic aesthetic designs.
+      This portfolio showcases my growth, skills, and projects.
+    </p>
+  </div>
+</section>
+
+<section id="skills" class="skills">
+  <h2>Technical & Soft Skills</h2> 
+  <ul>
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>JavaScript</li>
+    <li>PHP</li>
+    <li>MySQL</li>
+    <li>Problem Solving</li>
+    <li>Teamwork</li>
+    <li>Adaptability</li>
+    <li>Time Management</li>
+  </ul>
+</section>
+
+<section id="education">
+  <h2>Educational Background</h2>
+
+  <div class="card">
+    <h3>Southville 8B Senior High School</h3>
+    <p>2018 – 2022</p>
+  </div>
+
+  <div class="card">
+    <h3>Senior High School – Automotive Track</h3>
+    <p>2022 – 2024</p>
+  </div>
+
+  <div class="card">
+    <h3>Bachelor of Science in Information Technology</h3>
+    <p>2024 – Present</p>
+  </div>
+</section>
+
+<section id="certifications">
+  <h2>Certifications</h2>
+
+  <div class="card">
+    <h3>JavaScript Essentials 1</h3>
+    <p>Cisco Networking Academy</p>
+    <img src="image/JavaScriptEssentials.jpg" alt="JavaScript Essentials Certificate">
+  </div>
+
+  <div class="card">
+    <h3>Introduction to HTML</h3>
+    <p>Simplilearn</p>
+    <img src="image/html.jpg" alt="Introduction to HTML Certificate">
+  </div>
+
+  <div class="card">
+    <h3>Introduction to CSS</h3>
+    <p>Simplilearn</p>
+    <img src="image/css.jpg" alt="Introduction to CSS Certificate">
+  </div>
+
+  <div class="card">
+    <h3>JavaScript for Beginners</h3>
+    <p>Simplilearn</p>
+    <img src="image/javascript.jpg" alt="JavaScript for Beginners Certificate">
+  </div>
+</section>
+
+<section id="projects">
+  <h2>Projects</h2>
+
+  <div class="card">
+    <h3>Login System</h3>
+    <a href="https://loginas.infinityfreeapp.com/dashboard.php" target="_blank" rel="noopener noreferrer">Launch Project</a>
+  </div>
+
+  <div class="card">
+    <h3>jQuery Project</h3>
+    <a href="https://raivergamier27-cyber.github.io/jquery/" target="_blank" rel="noopener noreferrer">Launch Project</a>
+  </div>
+
+  <div class="card">
+    <h3>Form Validation</h3>
+    <a href="https://raivergamier27-cyber.github.io/revisedformvalidation/" target="_blank" rel="noopener noreferrer">Launch Project</a>
+  </div>
+
+  <div class="card">
+    <h3>Memory Game</h3>
+    <a href="https://raivergamier27-cyber.github.io/simplememorygame/" target="_blank" rel="noopener noreferrer">Launch Project</a>
+  </div>
+
+  <div class="card">
+    <h3>Calculator</h3>
+    <a href="https://raivergamier27-cyber.github.io/calculator/" target="_blank" rel="noopener noreferrer">Launch Project</a>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <p>Email: raivergamier27@email.com</p>
+  <p>Facebook: Raiver Gamier</p>
+  <p>Mobile: 09910834311</p>
+  <br>
+  <button id="connectBtn">Connect with Me</button>
+</section>
+
+<footer>
+  <p>&copy; 2025 Raiver Gamier | BSIT</p>
+</footer>
+
+<script>
+(() => {
+  const sound = new Audio("https://assets.mixkit.co/sfx/preview/mixkit-small-bell-chime-1349.wav"); 
+  document.getElementById("connectBtn").onclick = () => {
+    sound.play();
+    alert("Connection details displayed. Have a stylish day.");
+  };
+
+  const text = "BSIT Student | Web Developer Enthusiast";
+  let i = 0;
+  const typing = document.getElementById("typing");
+
+  (function type() {
+    if (i < text.length) {
+      typing.textContent += text[i++];
+      setTimeout(type, 80);
+    }
+  })();
+})();
+</script>
+
+</body>
+</html>

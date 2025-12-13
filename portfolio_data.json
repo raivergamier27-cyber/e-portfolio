@@ -1,0 +1,86 @@
+{
+  "personal": {
+    "name": "Raiver Gamier",
+    "title": "BSIT Student | Web Developer Enthusiast",
+    "about_text": "Hello! I am a Bachelor of Science in Information Technology (BSIT) student passionate about web development, programming, and classic aesthetic designs. This portfolio showcases my growth, skills, and projects.",
+    "profile_image": "image/Gamier.png"
+  },
+  "contact": {
+    "email": "raivergamier27@email.com",
+    "facebook": "Raiver Gamier",
+    "mobile": "09910834311"
+  },
+  "skills": {
+    "technical": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "PHP",
+      "MySQL"
+    ],
+    "soft": [
+      "Problem Solving",
+      "Teamwork",
+      "Adaptability",
+      "Time Management"
+    ]
+  },
+  "education": [
+    {
+      "title": "Southville 8B Senior High School",
+      "years": "2018 – 2022"
+    },
+    {
+      "title": "Senior High School – Automotive Track",
+      "years": "2022 – 2024"
+    },
+    {
+      "title": "Bachelor of Science in Information Technology",
+      "years": "2024 – Present"
+    }
+  ],
+  "certifications": [
+    {
+      "title": "JavaScript Essentials 1",
+      "issuer": "Cisco Networking Academy",
+      "image_path": "image/JavaScriptEssentials.jpg"
+    },
+    {
+      "title": "Introduction to HTML",
+      "issuer": "Simplilearn",
+      "image_path": "image/html.jpg"
+    },
+    {
+      "title": "Introduction to CSS",
+      "issuer": "Simplilearn",
+      "image_path": "image/css.jpg"
+    },
+    {
+      "title": "JavaScript for Beginners",
+      "issuer": "Simplilearn",
+      "image_path": "image/javascript.jpg"
+    }
+  ],
+  "projects": [
+    {
+      "title": "Login System",
+      "url": "https://loginas.infinityfreeapp.com/dashboard.php"
+    },
+    {
+      "title": "jQuery Project",
+      "url": "https://raivergamier27-cyber.github.io/jquery/"
+    },
+    {
+      "title": "Form Validation",
+      "url": "https://raivergamier27-cyber.github.io/revisedformvalidation/"
+    },
+    {
+      "title": "Memory Game",
+      "url": "https://raivergamier27-cyber.github.io/simplememorygame/"
+    },
+    {
+      "title": "Calculator",
+      "url": "https://raivergamier27-cyber.github.io/calculator/"
+    }
+  ]
+}
