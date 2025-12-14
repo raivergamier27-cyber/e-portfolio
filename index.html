@@ -5,23 +5,41 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Raiver Gamier | BSIT E-Portfolio</title>
 
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    'primary-dark': '#111111', 
+                    'card-bg': 'rgba(255, 255, 255, 0.1)',
+                },
+                fontFamily: {
+                    sans: ['Roboto', 'Inter', 'Arial', 'Helvetica', 'sans-serif'],
+                },
+            }
+        }
+    }
+</script>
+
 <style>
+/* --- CUSTOM CSS --- */
+
 :root {
-  --black-bg: #111111; /* Very dark gray for background */
-  --white-text: #BBBBBB; /* Light gray for main text */
-  --white-highlight: #FFFFFF; /* Pure white for highlights and titles */
-  --gray-accent: #444444; /* Dark gray for borders and separators */
-  --light-paper: #222222; /* Slightly lighter background for sections/cards */
+  --black-bg: #111111; 
+  --white-text: #BBBBBB; 
+  --white-highlight: #FFFFFF; 
+  --gray-accent: #444444; 
+  --light-paper: #222222; 
 }
 
-/* Classic, elegant sans-serif font */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif; 
-  /* GLOBAL TRANSITION: Smooths out all color, shadow, and position changes */
-  transition: color 0.4s, background 0.4s, border-color 0.4s, box-shadow 0.4s, transform 0.4s;
+  transition: color 0.3s, background 0.3s, border-color 0.3s, box-shadow 0.3s, transform 0.3s;
 }
 
 body {
@@ -29,7 +47,6 @@ body {
   color: var(--white-text);
   line-height: 1.8;
   overflow-x: hidden;
-  /* Optional: Enables smooth scrolling to sections when clicking navigation links */
   scroll-behavior: smooth; 
 }
 
@@ -56,22 +73,21 @@ header h1 {
   white-space: nowrap;
   overflow: hidden;
   display: inline-block;
-  font-family: 'Arial', sans-serif; 
 }
 
-/* ================= NAV (High Contrast) ================= */
+/* ================= NAV ================= */
 nav {
   position: sticky;
   top: 0;
-  z-index: 10;
-  background: #000000;
+  z-index: 40; 
+  background: rgba(0, 0, 0, 0.9); 
   border-bottom: 1px solid var(--gray-accent);
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 2rem;
   padding: 1rem;
-  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
 }
 
 nav a {
@@ -103,18 +119,13 @@ nav a:hover::after {
   left: 0;
 }
 
-/* ================= SCROLL REVEAL ANIMATION (CSS) ================= */
+/* ================= ANIMATION ================= */
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
+/* Common Section Styling */
 section {
   max-width: 900px;
   margin: 3.5rem auto;
@@ -123,18 +134,15 @@ section {
   border: 1px solid var(--gray-accent);
   border-radius: 4px;
   box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
-
-  /* Apply subtle entrance animation with staggered delay */
   animation: fadeInUp 0.8s ease-out; 
   animation-fill-mode: backwards; 
 }
 
-/* Staggered Delay for Sections */
+/* Animation Delays */
 #about { animation-delay: 0.0s; }
 #skills { animation-delay: 0.1s; }
 #education { animation-delay: 0.2s; }
-#certifications { animation-delay: 0.3s; }
-#projects { animation-delay: 0.4s; }
+#reflections { animation-delay: 0.3s; }
 #contact { animation-delay: 0.5s; }
 
 section h2 {
@@ -182,14 +190,13 @@ section h2 {
 }
 
 .skills li:hover {
-  /* Enhanced Hover */
   background: var(--gray-accent);
   color: var(--white-highlight);
   transform: translateY(-4px) scale(1.02); 
   box-shadow: 0 8px 15px rgba(255, 255, 255, 0.2);
 }
 
-/* ================= CARDS (Subtle Dividers) ================= */
+/* ================= EDUCATION CARDS ================= */
 .card {
   margin-bottom: 1.5rem;
   padding: 1.5rem;
@@ -205,31 +212,34 @@ section h2 {
   font-weight: normal;
 }
 
-/* Styling for Certificate Images */
-.card img {
-  display: block;
-  width: 100%;
-  max-width: 500px;
-  margin: 1.5rem auto;
-  border: 2px solid var(--white-highlight);
-  border-radius: 4px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+/* ================= TAILWIND/MODERN OVERRIDES ================= */
+/* We reset the max-width for the full-width Tailwind sections */
+#certifications, #projects {
+    max-width: 100%;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
 }
 
-/* Styling for Project Links */
-.card a {
-    color: var(--white-highlight);
+.backdrop-blur-md {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+/* Interactive Card Styles */
+.cert-card, .project-card {
+    display: block;
+    height: 100%;
     text-decoration: none;
-    border-bottom: 1px dashed var(--white-text);
+    cursor: pointer;
+    animation: fadeInUp 0.8s ease-out; 
+    animation-fill-mode: backwards; 
 }
 
-.card a:hover {
-    color: var(--white-text);
-    border-bottom-color: var(--white-highlight);
-}
-
-/* ================= BUTTON (Elegant) ================= */
-button {
+/* ================= BUTTON ================= */
+button#connectBtn {
   padding: .8rem 1.8rem;
   background: transparent;
   color: var(--white-highlight);
@@ -240,8 +250,7 @@ button {
   letter-spacing: 1px;
 }
 
-button:hover {
-  /* Enhanced Hover */
+button#connectBtn:hover {
   background: var(--white-highlight);
   color: var(--black-bg);
   transform: scale(1.05);
@@ -255,6 +264,11 @@ footer {
   border-top: 1px dashed var(--gray-accent);
   margin-top: 4rem;
   color: #666;
+}
+
+/* ================= MODAL ================= */
+#imageModal {
+    transition: opacity 0.3s ease;
 }
 
 /* ================= MOBILE ================= */
@@ -278,6 +292,7 @@ footer {
   <a href="#about">About</a>
   <a href="#skills">Skills</a>
   <a href="#education">Education</a>
+  <a href="#reflections">Reflections</a>
   <a href="#certifications">Certifications</a>
   <a href="#projects">Projects</a>
   <a href="#contact">Contact</a>
@@ -288,9 +303,7 @@ footer {
   <div class="about">
     <img src="image/Gamier.png" alt="Raiver Gamier">
     <p>
-      Hello! I am a Bachelor of Science in Information Technology (BSIT) student
-      passionate about web development, programming, and classic aesthetic designs.
-      This portfolio showcases my growth, skills, and projects.
+      I am Raiver Gamier, a BSIT student who believes that technology is more than just logic—it is a modern canvas. Driven by a deep passion for web development and the timeless beauty of classic aesthetics, I pour my heart into every line of code I write. This portfolio is not just a collection of projects; it is the story of my growth, my dedication, and my journey toward creating things that matter.
     </p>
   </div>
 </section>
@@ -326,64 +339,226 @@ footer {
   <div class="card">
     <h3>Bachelor of Science in Information Technology</h3>
     <p>2024 – Present</p>
-  </div>
+    </div>
 </section>
 
-<section id="certifications">
-  <h2>Certifications</h2>
-
-  <div class="card">
-    <h3>JavaScript Essentials 1</h3>
-    <p>Cisco Networking Academy</p>
-    <img src="image/JavaScriptEssentials.jpg" alt="JavaScript Essentials Certificate">
-  </div>
-
-  <div class="card">
-    <h3>Introduction to HTML</h3>
-    <p>Simplilearn</p>
-    <img src="image/html.jpg" alt="Introduction to HTML Certificate">
-  </div>
-
-  <div class="card">
-    <h3>Introduction to CSS</h3>
-    <p>Simplilearn</p>
-    <img src="image/css.jpg" alt="Introduction to CSS Certificate">
-  </div>
-
-  <div class="card">
-    <h3>JavaScript for Beginners</h3>
-    <p>Simplilearn</p>
-    <img src="image/javascript.jpg" alt="JavaScript for Beginners Certificate">
-  </div>
+<section id="reflections" style="animation-delay: 0.3s;">
+    <h2>Lessons Learned and Future Vision</h2>
+    <p>
+        Every project and every challenge has taught me a crucial lesson: learning never stops, and failure is only ever a starting point. I have learned that the best solutions often require patience and creativity, going far beyond simple code.
+    </p>
+    <p class="mt-4">
+        Looking ahead, I plan to expand my knowledge in robust backend frameworks like Laravel, and explore mobile application development. My dream is to use IT to build solutions that not only function flawlessly but also leave a positive impact on our community.
+    </p>
 </section>
 
-<section id="projects">
-  <h2>Projects</h2>
+<section id="certifications" class="py-16 px-4 md:px-6 bg-gray-900 border-t border-gray-800">
+    <div class="max-w-7xl mx-auto">
+        <header class="text-center mb-12">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-3 inline-block border-b-2 border-white pb-2">
+                Certifications & Achievements
+            </h2>
+            <p class="text-lg text-gray-400 max-w-2xl mx-auto mt-4">
+                Click on any certificate to view the details.
+            </p>
+        </header>
 
-  <div class="card">
-    <h3>Login System</h3>
-    <a href="https://loginas.infinityfreeapp.com/dashboard.php" target="_blank" rel="noopener noreferrer">Launch Project</a>
-  </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-  <div class="card">
-    <h3>jQuery Project</h3>
-    <a href="https://raivergamier27-cyber.github.io/jquery/" target="_blank" rel="noopener noreferrer">Launch Project</a>
-  </div>
+            <div onclick="openModal('image/JavaScriptEssentials.jpg', 'JavaScript Essentials 1')" class="cert-card group" style="animation-delay: 0.4s;">
+                <div class="h-full p-6 rounded-xl shadow-2xl backdrop-blur-md bg-white/5 border border-white/10 group-hover:bg-white/10 group-hover:border-white/40 transition duration-500 ease-in-out transform group-hover:-translate-y-2 relative overflow-hidden">
+                    <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
+                    </div>
 
-  <div class="card">
-    <h3>Form Validation</h3>
-    <a href="https://raivergamier27-cyber.github.io/revisedformvalidation/" target="_blank" rel="noopener noreferrer">Launch Project</a>
-  </div>
+                    <div class="flex flex-col h-full justify-between">
+                        <div class="mb-4">
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-teal-300 transition-colors">JavaScript Essentials 1</h3>
+                            <p class="text-gray-300 text-sm italic">Cisco Networking Academy</p>
+                        </div>
+                        <span class="text-xs font-semibold text-teal-400 uppercase tracking-wider self-start px-3 py-1 bg-teal-900/30 border border-teal-900 rounded-full">
+                            Advanced Skill
+                        </span>
+                    </div>
+                </div>
+            </div>
 
-  <div class="card">
-    <h3>Memory Game</h3>
-    <a href="https://raivergamier27-cyber.github.io/simplememorygame/" target="_blank" rel="noopener noreferrer">Launch Project</a>
-  </div>
+            <div onclick="openModal('image/html.jpg', 'Introduction to HTML')" class="cert-card group" style="animation-delay: 0.5s;">
+                <div class="h-full p-6 rounded-xl shadow-2xl backdrop-blur-md bg-white/5 border border-white/10 group-hover:bg-white/10 group-hover:border-white/40 transition duration-500 ease-in-out transform group-hover:-translate-y-2 relative">
+                    <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col h-full justify-between">
+                        <div class="mb-4">
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-blue-300 transition-colors">Introduction to HTML</h3>
+                            <p class="text-gray-300 text-sm italic">Simplilearn</p>
+                        </div>
+                        <span class="text-xs font-semibold text-blue-400 uppercase tracking-wider self-start px-3 py-1 bg-blue-900/30 border border-blue-900 rounded-full">
+                            Foundational
+                        </span>
+                    </div>
+                </div>
+            </div>
 
-  <div class="card">
-    <h3>Calculator</h3>
-    <a href="https://raivergamier27-cyber.github.io/calculator/" target="_blank" rel="noopener noreferrer">Launch Project</a>
-  </div>
+            <div onclick="openModal('image/css.jpg', 'Introduction to CSS')" class="cert-card group" style="animation-delay: 0.6s;">
+                <div class="h-full p-6 rounded-xl shadow-2xl backdrop-blur-md bg-white/5 border border-white/10 group-hover:bg-white/10 group-hover:border-white/40 transition duration-500 ease-in-out transform group-hover:-translate-y-2 relative">
+                    <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col h-full justify-between">
+                        <div class="mb-4">
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-purple-300 transition-colors">Introduction to CSS</h3>
+                            <p class="text-gray-300 text-sm italic">Simplilearn</p>
+                        </div>
+                        <span class="text-xs font-semibold text-purple-400 uppercase tracking-wider self-start px-3 py-1 bg-purple-900/30 border border-purple-900 rounded-full">
+                            Design Focus
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+             <div onclick="openModal('image/javascript.jpg', 'JS for Beginners')" class="cert-card group" style="animation-delay: 0.7s;">
+                <div class="h-full p-6 rounded-xl shadow-2xl backdrop-blur-md bg-white/5 border border-white/10 group-hover:bg-white/10 group-hover:border-white/40 transition duration-500 ease-in-out transform group-hover:-translate-y-2 relative">
+                    <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col h-full justify-between">
+                        <div class="mb-4">
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-yellow-300 transition-colors">JavaScript for Beginners</h3>
+                            <p class="text-gray-300 text-sm italic">Simplilearn</p>
+                        </div>
+                        <span class="text-xs font-semibold text-yellow-400 uppercase tracking-wider self-start px-3 py-1 bg-yellow-900/30 border border-yellow-900 rounded-full">
+                            Core Logic
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cert-card p-6 rounded-xl shadow-2xl backdrop-blur-md bg-white/5 border border-white/10 flex flex-col justify-between" style="animation-delay: 0.8s;">
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-2">Academic Excellence</h3>
+                    <p class="text-gray-300 text-sm italic">BSIT Department - 2024</p>
+                </div>
+                <span class="text-xs font-semibold text-fuchsia-400 uppercase tracking-wider self-start mt-4 px-3 py-1 bg-fuchsia-900/30 border border-fuchsia-900 rounded-full">
+                    Recognition
+                </span>
+            </div>
+
+            <div class="cert-card p-6 rounded-xl shadow-2xl backdrop-blur-md bg-white/5 border border-white/10 flex flex-col justify-between" style="animation-delay: 0.9s;">
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-2">Automotive Track NC II</h3>
+                    <p class="text-gray-300 text-sm italic">TESDA Certification</p>
+                </div>
+                <span class="text-xs font-semibold text-red-400 uppercase tracking-wider self-start mt-4 px-3 py-1 bg-red-900/30 border border-red-900 rounded-full">
+                    Technical
+                </span>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section id="projects" class="py-16 px-4 md:px-6 bg-gray-900">
+    <div class="max-w-7xl mx-auto">
+        <header class="text-center mb-12">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-3 inline-block border-b-2 border-white pb-2">
+                Software Projects
+            </h2>
+            <p class="text-lg text-gray-400 max-w-2xl mx-auto mt-4">
+                Practical application of programming and web development skills.
+            </p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <a href="https://loginas.infinityfreeapp.com/dashboard.php" target="_blank" rel="noopener noreferrer" class="project-card group" style="animation-delay: 1.0s;">
+                <div class="h-full p-6 rounded-xl shadow-2xl backdrop-blur-md bg-white/5 border border-white/10 group-hover:border-white/40 transition duration-500 ease-in-out transform group-hover:-translate-y-2">
+                    <div class="flex flex-col h-full justify-between">
+                        <div class="mb-4">
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-lime-300 transition-colors">Login System</h3>
+                            <p class="text-gray-300 text-sm italic">Backend: PHP & MySQL</p>
+                        </div>
+                        <span class="text-xs font-semibold text-lime-400 uppercase tracking-wider self-start px-3 py-1 bg-lime-900/30 border border-lime-900 rounded-full">
+                            Full Stack
+                        </span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://raivergamier27-cyber.github.io/jquery/" target="_blank" rel="noopener noreferrer" class="project-card group" style="animation-delay: 1.1s;">
+                <div class="h-full p-6 rounded-xl shadow-2xl backdrop-blur-md bg-white/5 border border-white/10 group-hover:border-white/40 transition duration-500 ease-in-out transform group-hover:-translate-y-2">
+                    <div class="flex flex-col h-full justify-between">
+                        <div class="mb-4">
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-sky-300 transition-colors">jQuery Project</h3>
+                            <p class="text-gray-300 text-sm italic">Technology: jQuery / JavaScript</p>
+                        </div>
+                        <span class="text-xs font-semibold text-sky-400 uppercase tracking-wider self-start px-3 py-1 bg-sky-900/30 border border-sky-900 rounded-full">
+                            Interactive UI
+                        </span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://raivergamier27-cyber.github.io/revisedformvalidation/" target="_blank" rel="noopener noreferrer" class="project-card group" style="animation-delay: 1.2s;">
+                <div class="h-full p-6 rounded-xl shadow-2xl backdrop-blur-md bg-white/5 border border-white/10 group-hover:border-white/40 transition duration-500 ease-in-out transform group-hover:-translate-y-2">
+                    <div class="flex flex-col h-full justify-between">
+                        <div class="mb-4">
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-orange-300 transition-colors">Form Validation</h3>
+                            <p class="text-gray-300 text-sm italic">Technology: JavaScript</p>
+                        </div>
+                        <span class="text-xs font-semibold text-orange-400 uppercase tracking-wider self-start px-3 py-1 bg-orange-900/30 border border-orange-900 rounded-full">
+                            Client-Side
+                        </span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="https://raivergamier27-cyber.github.io/simplememorygame/" target="_blank" rel="noopener noreferrer" class="project-card group" style="animation-delay: 1.3s;">
+                <div class="h-full p-6 rounded-xl shadow-2xl backdrop-blur-md bg-white/5 border border-white/10 group-hover:border-white/40 transition duration-500 ease-in-out transform group-hover:-translate-y-2">
+                    <div class="flex flex-col h-full justify-between">
+                        <div class="mb-4">
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-pink-300 transition-colors">Memory Game</h3>
+                            <p class="text-gray-300 text-sm italic">Technology: JavaScript</p>
+                        </div>
+                        <span class="text-xs font-semibold text-pink-400 uppercase tracking-wider self-start px-3 py-1 bg-pink-900/30 border border-pink-900 rounded-full">
+                            Game Dev
+                        </span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://raivergamier27-cyber.github.io/calculator/" target="_blank" rel="noopener noreferrer" class="project-card group" style="animation-delay: 1.4s;">
+                <div class="h-full p-6 rounded-xl shadow-2xl backdrop-blur-md bg-white/5 border border-white/10 group-hover:border-white/40 transition duration-500 ease-in-out transform group-hover:-translate-y-2">
+                    <div class="flex flex-col h-full justify-between">
+                        <div class="mb-4">
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-indigo-300 transition-colors">Calculator</h3>
+                            <p class="text-gray-300 text-sm italic">Technology: JavaScript</p>
+                        </div>
+                        <span class="text-xs font-semibold text-indigo-400 uppercase tracking-wider self-start px-3 py-1 bg-indigo-900/30 border border-indigo-900 rounded-full">
+                            Utility App
+                        </span>
+                    </div>
+                </div>
+            </a>
+
+            <div class="project-card p-6 rounded-xl shadow-2xl backdrop-blur-md bg-white/5 border border-white/10 flex items-center justify-center text-center opacity-70" style="animation-delay: 1.5s;">
+                <p class="text-gray-500 italic">... Future Project Coming Soon ...</p>
+            </div>
+
+        </div>
+    </div>
 </section>
 
 <section id="contact">
@@ -399,25 +574,73 @@ footer {
   <p>&copy; 2025 Raiver Gamier | BSIT</p>
 </footer>
 
+<div id="imageModal" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-sm flex items-center justify-center p-4">
+    <button onclick="closeModal()" class="absolute top-5 right-5 text-white hover:text-red-500 focus:outline-none z-50">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+    </button>
+
+    <div class="relative max-w-4xl w-full flex flex-col items-center">
+        <h3 id="modalTitle" class="text-2xl text-white font-bold mb-4 tracking-wide"></h3>
+        <img id="modalImg" src="" alt="Certificate View" class="w-auto max-h-[80vh] object-contain rounded-lg border-2 border-white/20 shadow-2xl" />
+    </div>
+</div>
+
 <script>
-(() => {
-  const sound = new Audio("https://assets.mixkit.co/sfx/preview/mixkit-small-bell-chime-1349.wav"); 
-  document.getElementById("connectBtn").onclick = () => {
-    sound.play();
-    alert("Connection details displayed. Have a stylish day.");
-  };
+  // MODAL LOGIC
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('modalImg');
+  const modalTitle = document.getElementById('modalTitle');
 
-  const text = "BSIT Student | Web Developer Enthusiast";
-  let i = 0;
-  const typing = document.getElementById("typing");
+  function openModal(imageSrc, title) {
+    modalImg.src = imageSrc;
+    modalTitle.textContent = title;
+    modal.classList.remove('hidden');
+    // Prevent background scrolling
+    document.body.style.overflow = 'hidden';
+  }
 
-  (function type() {
-    if (i < text.length) {
-      typing.textContent += text[i++];
-      setTimeout(type, 80);
+  function closeModal() {
+    modal.classList.add('hidden');
+    modalImg.src = '';
+    // Restore scrolling
+    document.body.style.overflow = 'auto';
+  }
+
+  // Close modal when clicking outside the image
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) {
+        closeModal();
     }
+  });
+
+  // Close modal with Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeModal();
+    }
+  });
+
+  // EXISTING LOGIC (Typing Effect & Sound)
+  (() => {
+    const sound = new Audio("https://assets.mixkit.co/sfx/preview/mixkit-small-bell-chime-1349.wav"); 
+    document.getElementById("connectBtn").onclick = () => {
+      sound.play().catch(e => console.log("Audio play failed (interaction needed first)"));
+      alert("Connection details displayed. Have a stylish day.");
+    };
+
+    const text = "BSIT Student | Web Developer Enthusiast";
+    let i = 0;
+    const typing = document.getElementById("typing");
+
+    (function type() {
+      if (i < text.length) {
+        typing.textContent += text[i++];
+        setTimeout(type, 80);
+      }
+    })();
   })();
-})();
 </script>
 
 </body>
